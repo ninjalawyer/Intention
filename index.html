@@ -159,7 +159,7 @@
 
         .match-header {
             display: flex;
-            justify-content: space-between;
+            justify-content: between;
             align-items: center;
             margin-bottom: 15px;
         }
@@ -460,3 +460,282 @@
                 </div>
             </div>
         </div>
+
+        <!-- Intake Complete -->
+        <div id="intake-complete" class="screen">
+            <div class="card">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%"></div>
+                </div>
+                <h2>🎉 Intake Complete!</h2>
+                <p style="margin: 20px 0; font-size: 1.1rem;">
+                    Thank you for completing your intake form. Next, you'll schedule a video consultation 
+                    with one of our certified matchmakers.
+                </p>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h3>What happens next:</h3>
+                    <ol style="margin: 15px 0; padding-left: 25px;">
+                        <li><strong>Video Consultation</strong> - 45-60 minutes with your matchmaker</li>
+                        <li><strong>Profile Creation</strong> - AI generates your optimized profile</li>
+                        <li><strong>Matching Process</strong> - We find your 5 most compatible matches</li>
+                        <li><strong>Calendar Integration</strong> - Schedule your dates seamlessly</li>
+                    </ol>
+                </div>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <button class="btn" onclick="showScreen('schedule-consultation')">Schedule Consultation</button>
+                </div>
+
+                <!-- For demo purposes, skip to matches -->
+                <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #e9ecef;">
+                    <p style="color: #666; margin-bottom: 10px;"><em>For demo purposes:</em></p>
+                    <button class="btn btn-secondary" onclick="generateMatches()">Skip to Matches</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schedule Consultation -->
+        <div id="schedule-consultation" class="screen">
+            <div class="card">
+                <h2>Schedule Your Consultation</h2>
+                <p style="margin: 20px 0;">Choose a time that works best for your 60-minute video consultation with our matchmaker.</p>
+                
+                <div class="calendar-grid">
+                    <div class="calendar-day" onclick="selectDate(this)">Mon<br>15</div>
+                    <div class="calendar-day" onclick="selectDate(this)">Tue<br>16</div>
+                    <div class="calendar-day" onclick="selectDate(this)">Wed<br>17</div>
+                    <div class="calendar-day" onclick="selectDate(this)">Thu<br>18</div>
+                    <div class="calendar-day" onclick="selectDate(this)">Fri<br>19</div>
+                    <div class="calendar-day" onclick="selectDate(this)">Sat<br>20</div>
+                    <div class="calendar-day" onclick="selectDate(this)">Sun<br>21</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Preferred Time</label>
+                    <select id="consultationTime">
+                        <option value="">Select a time</option>
+                        <option value="9am">9:00 AM</option>
+                        <option value="10am">10:00 AM</option>
+                        <option value="11am">11:00 AM</option>
+                        <option value="1pm">1:00 PM</option>
+                        <option value="2pm">2:00 PM</option>
+                        <option value="3pm">3:00 PM</option>
+                        <option value="4pm">4:00 PM</option>
+                        <option value="6pm">6:00 PM</option>
+                        <option value="7pm">7:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="showScreen('intake-complete')">Back</button>
+                    <button class="btn" onclick="showScreen('consultation-scheduled')">Confirm Consultation</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consultation Scheduled -->
+        <div id="consultation-scheduled" class="screen">
+            <div class="card">
+                <h2>✅ Consultation Scheduled!</h2>
+                <div style="background: #e8f5e8; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h3>Your Appointment Details:</h3>
+                    <p><strong>Date:</strong> <span id="selectedDate">June 17, 2025</span></p>
+                    <p><strong>Time:</strong> <span id="selectedTime">2:00 PM</span></p>
+                    <p><strong>Duration:</strong> 60 minutes</p>
+                    <p><strong>Platform:</strong> Zoom (link will be sent via email)</p>
+                </div>
+                
+                <p style="margin: 20px 0;">
+                    You'll receive a confirmation email with the Zoom link and preparation materials. 
+                    After your consultation, we'll create your matches within 24-48 hours.
+                </p>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <button class="btn" onclick="generateMatches()">Continue to Demo</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Your Matches -->
+        <div id="matches" class="screen">
+            <div class="card">
+                <h2>Your 5 Curated Matches</h2>
+                <p style="margin: 20px 0;">Based on your consultation and our AI analysis, here are your most compatible matches:</p>
+                
+                <div id="matchesList">
+                    <!-- Matches will be generated here -->
+                </div>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <button class="btn" onclick="showScreen('calendar-integration')">Schedule Your Dates</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar Integration -->
+        <div id="calendar-integration" class="screen">
+            <div class="card">
+                <h2>Connect Your Calendar</h2>
+                <p style="margin: 20px 0;">
+                    Link your calendar so we can find mutual availability with your matches and 
+                    help you schedule your dates seamlessly.
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0;">
+                    <div class="btn" style="display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        📅 Google Calendar
+                    </div>
+                    <div class="btn" style="display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        📧 Outlook Calendar
+                    </div>
+                    <div class="btn" style="display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        🍎 Apple Calendar
+                    </div>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h3>Privacy Notice</h3>
+                    <p>We only access your availability, not your private events. Your calendar data is encrypted and never shared with matches or third parties.</p>
+                </div>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <button class="btn" onclick="showScreen('dates-scheduled')">Calendar Connected</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dates Scheduled -->
+        <div id="dates-scheduled" class="screen">
+            <div class="card">
+                <h2>🗓️ Your Dates Are Scheduled!</h2>
+                <p style="margin: 20px 0;">We've found mutual availability and scheduled your first date. Here's what's coming up:</p>
+
+                <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #667eea;">
+                    <h3>Upcoming Date</h3>
+                    <p><strong>Match:</strong> Sarah M.</p>
+                    <p><strong>Date:</strong> Thursday, June 19th</p>
+                    <p><strong>Time:</strong> 7:00 PM</p>
+                    <p><strong>Suggested Location:</strong> Coffee shop or casual restaurant in downtown</p>
+                    <p><strong>Compatibility:</strong> 94% match</p>
+                </div>
+
+                <div style="background: #fff9e6; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h3>Remember:</h3>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li>You must either attend the date or formally decline</li>
+                        <li>Location details will be shared 24 hours before</li>
+                        <li>Post-date reflection is required within 24 hours</li>
+                        <li>We'll schedule your remaining dates based on this feedback</li>
+                    </ul>
+                </div>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <button class="btn" onclick="showScreen('post-date-demo')">Skip to Post-Date Experience</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Post-Date Reflection -->
+        <div id="post-date-demo" class="screen">
+            <div class="card">
+                <h2>How Was Your Date?</h2>
+                <p style="margin: 20px 0;">Please share your thoughts about your date with Sarah. This helps us improve your future matches.</p>
+
+                <div class="voice-recorder" id="voiceRecorder">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🎤</div>
+                    <p id="recordingStatus">Click to start voice reflection</p>
+                    <button class="btn" id="recordBtn" onclick="toggleRecording()">Start Recording</button>
+                </div>
+
+                <div style="margin: 30px 0;">
+                    <h3>Reflection Prompts:</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                        <ul style="padding-left: 20px;">
+                            <li>How did you feel during the conversation?</li>
+                            <li>What did you enjoy most about your time together?</li>
+                            <li>Was there good chemistry and connection?</li>
+                            <li>Would you like to see this person again?</li>
+                            <li>What did you learn about what you're looking for?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Quick Rating</label>
+                    <select id="dateRating">
+                        <option value="">How was the overall experience?</option>
+                        <option value="excellent">Excellent - Would love to see again</option>
+                        <option value="good">Good - Enjoyed it, open to another date</option>
+                        <option value="okay">Okay - Nice person, not sure about compatibility</option>
+                        <option value="poor">Not a match - Different wavelengths</option>
+                    </select>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="showScreen('dates-scheduled')">Back</button>
+                    <button class="btn" onclick="showScreen('insights-report')">Submit Reflection</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Insights Report -->
+        <div id="insights-report" class="screen">
+            <div class="card">
+                <h2>📊 Your Dating Insights Report</h2>
+                <p style="margin: 20px 0;">After completing your 5 dates, here's what we learned about your dating patterns and preferences:</p>
+
+                <div class="insights-section">
+                    <div class="insight-item">
+                        <div class="insight-title">Communication Style Preference</div>
+                        <p>You connect best with people who are direct communicators and share personal stories early in conversation. Your most successful dates involved deep, meaningful discussions rather than surface-level small talk.</p>
+                    </div>
+
+                    <div class="insight-item">
+                        <div class="insight-title">Shared Interest Impact</div>
+                        <p>Dates with shared interests in outdoor activities and travel led to 73% higher connection scores. Consider prioritizing matches with these commonalities in your next cycle.</p>
+                    </div>
+
+                    <div class="insight-item">
+                        <div class="insight-title">Dating Environment</div>
+                        <p>You performed better in casual, low-pressure environments like coffee shops and casual walks rather than formal dinner settings. This suggests you're more comfortable when you can focus on conversation.</p>
+                    </div>
+
+                    <div class="insight-item">
+                        <div class="insight-title">Values Alignment</div>
+                        <p>Your highest-rated matches shared your priorities around career ambition and family values. These factors appear to be strong predictors of your compatibility.</p>
+                    </div>
+                </div>
+
+                <div style="background: #e8f5e8; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h3>Recommendations for Your Next Cycle:</h3>
+                    <ul style="padding-left: 20px;">
+                        <li>Focus on matches with outdoor/travel interests</li>
+                        <li>Request casual first date locations</li>
+                        <li>Prioritize shared values around career and family</li>
+                        <li>Continue being authentic - your genuine personality connects well</li>
+                    </ul>
+                </div>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <button class="btn" onclick="showScreen('next-cycle')">Schedule Next 5 Matches</button>
+                    <button class="btn btn-secondary" onclick="showScreen('matchmaker-consultation')">Talk to Matchmaker</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Matchmaker Consultation -->
+        <div id="matchmaker-consultation" class="screen">
+            <div class="card">
+                <h2>👥 Schedule Matchmaker Consultation</h2>
+                <p style="margin: 20px 0;">
+                    Based on your dating insights, let's refine your approach. Our matchmaker will review 
+                    your recent dates and help optimize your next matches.
+                </p>
+
+                <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h3>What We'll Cover:</h3>
+                    <ul style="padding-left: 20px; margin: 10px 0;">
+                        <li>Analysis of your 5 recent dates</li>
+                        <li>Feedback on what worked and what didn't</li>
+                        <li>
