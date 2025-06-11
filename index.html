@@ -493,20 +493,20 @@
     <div class="form-container" id="intakeForm">
       <h2>Let's Get to Know You</h2>
       
-      <form id="userForm">
+      <form id="userForm" action="https://formspree.io/f/xblygnnv" method="POST">
         <div class="form-group">
           <label for="location">Location</label>
-          <input type="text" id="location" placeholder="City, State" required />
+          <input type="text" id="location" name="location" placeholder="City, State" required />
         </div>
 
         <div class="form-group">
           <label for="occupation">Occupation</label>
-          <input type="text" id="occupation" placeholder="Your profession" required />
+          <input type="text" id="occupation" name="occupation" placeholder="Your profession" required />
         </div>
 
         <div class="form-group">
           <label for="relationshipGoal">What are you looking for?</label>
-          <select id="relationshipGoal" required>
+          <select id="relationshipGoal" name="relationship_goal" required>
             <option value="" disabled selected>Select your goal</option>
             <option value="serious">Serious long-term relationship</option>
             <option value="marriage">Marriage</option>
@@ -519,11 +519,15 @@
           <label for="idealPartner">Tell us about your ideal partner</label>
           <textarea
             id="idealPartner"
+            name="ideal_partner"
             placeholder="Describe the qualities, values, and characteristics you're looking for..."
             required
           ></textarea>
         </div>
 
+        <!-- Hidden field to identify the form -->
+        <input type="hidden" name="_subject" value="New Intention Dating App Submission" />
+        
         <div class="nav-buttons">
           <button type="button" class="back-btn" id="backBtn">Back</button>
           <button type="submit" class="submit-btn">Submit</button>
@@ -567,11 +571,15 @@
       });
 
       userForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Thank you for your interest! We\'ll be in touch soon to schedule your consultation.');
-        userForm.reset();
-        intakeForm.style.display = 'none';
-        welcomeSection.style.display = 'block';
+        // Let the form submit naturally to Formspree
+        // Show a loading state
+        const submitBtn = e.target.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Submitting...';
+        submitBtn.disabled = true;
+        
+        // Note: The form will redirect to Formspree's thank you page
+        // If you want to stay on your page, you'd need to use AJAX
       });
     });
   </script>
