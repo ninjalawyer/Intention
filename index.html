@@ -3,156 +3,328 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Find Your Partner</title>
+  <title>Intention - Intentional Dating</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+    
+    .hero-section {
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-    }
-    .container {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       padding: 2rem;
-      width: 90%;
-      max-width: 480px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
+      opacity: 0.15;
+      z-index: -1;
+    }
+    
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      padding: 3rem;
+      width: 100%;
+      max-width: 800px;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
-    h1 {
+    
+    .logo {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 1rem;
+      letter-spacing: -2px;
     }
-    button {
-      background: #007bff;
+    
+    .tagline {
+      font-size: 1.3rem;
+      color: #666;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    
+    .hero-image {
+      width: 300px;
+      height: 200px;
+      background: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2088&q=80') center/cover;
+      border-radius: 15px;
+      margin: 0 auto 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .description {
+      text-align: left;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+    
+    .description p {
+      margin-bottom: 1.5rem;
+    }
+    
+    .description strong {
+      color: #333;
+      font-weight: 600;
+    }
+    
+    .cta-button {
+      background: linear-gradient(135deg, #667eea, #764ba2);
       color: white;
       border: none;
-      padding: 0.8rem 1.6rem;
-      border-radius: 4px;
-      font-size: 1rem;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
       cursor: pointer;
-      margin-top: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    button:hover {
-      background: #0056b3;
+    
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
     }
-    form {
+    
+    .form-container {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      padding: 3rem;
+      width: 100%;
+      max-width: 600px;
       text-align: left;
       display: none;
-      margin-top: 1rem;
+      position: relative;
+      z-index: 1;
     }
+    
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #333;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+    
     .form-group {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
+    
     label {
       display: block;
-      margin-bottom: 0.3rem;
-      font-weight: bold;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #333;
     }
+    
     input[type="text"],
     select,
     textarea {
       width: 100%;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      padding: 1rem;
+      border: 2px solid #e1e5e9;
+      border-radius: 10px;
       font-size: 1rem;
-      resize: vertical;
-      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+      background: #f8f9fa;
     }
+    
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      background: white;
+    }
+    
     textarea {
-      min-height: 80px;
+      min-height: 120px;
+      resize: vertical;
     }
+    
     .nav-buttons {
-      text-align: right;
-      margin-top: 1.5rem;
+      text-align: center;
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
     }
+    
     .nav-buttons button {
-      background: #6c757d;
-      margin-left: 0.5rem;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
-    .nav-buttons button.primary {
-      background: #28a745;
+    
+    .back-btn {
+      background: #f8f9fa;
+      color: #666;
+      border: 2px solid #e1e5e9;
+    }
+    
+    .back-btn:hover {
+      background: #e9ecef;
+      transform: translateY(-2px);
+    }
+    
+    .submit-btn {
+      background: linear-gradient(135deg, #28a745, #20c997);
+      color: white;
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    }
+    
+    @media (max-width: 768px) {
+      .container, .form-container {
+        margin: 1rem;
+        padding: 2rem;
+      }
+      
+      .logo {
+        font-size: 2.5rem;
+      }
+      
+      .tagline {
+        font-size: 1.1rem;
+      }
+      
+      .hero-image {
+        width: 250px;
+        height: 160px;
+      }
+      
+      .nav-buttons {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome!</h1>
-    <p>Ready to find your ideal partner? Let's get started.</p>
-    <button id="getStartedBtn">Get Started</button>
-
-    <form id="intakeForm">
-      <div class="form-group">
-        <label for="location">Location</label>
-        <input type="text" id="location" placeholder="City, State" required />
+  <div class="hero-section">
+    <div class="container" id="welcomeSection">
+      <div class="logo">Intention</div>
+      <div class="tagline">Intentional Dating. Real Relationships.</div>
+      
+      <div class="hero-image"></div>
+      
+      <div class="description">
+        <p><strong>Dating apps have a 22% success rate because they're built like games, not relationship tools.</strong> Intention fixes this by combining professional matchmakers with AI to create meaningful connections.</p>
+        
+        <p><strong>Here's how it works:</strong> Instead of swiping through hundreds of profiles, you start with a personal consultation with a trained matchmaker who really gets to know you. Our AI then curates exactly 5 compatible matches based on deep compatibility, not just photos. You link your calendars, meet in person, and after each date, you reflect through voice prompts that help our AI learn what works for you.</p>
+        
+        <p><strong>After 5 dates, you get a personalized insights report, plus ongoing matchmaker support to refine your approach.</strong> No endless swiping, no ghosting, no games - just intentional dating that leads to real relationships.</p>
       </div>
+      
+      <button class="cta-button" id="getStartedBtn">Start Your Journey</button>
+    </div>
 
-      <div class="form-group">
-        <label for="occupation">Occupation</label>
-        <input type="text" id="occupation" placeholder="Your profession" required />
-      </div>
+    <div class="form-container" id="intakeForm">
+      <h2>Let's Get to Know You</h2>
+      
+      <form id="userForm">
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" id="location" placeholder="City, State" required />
+        </div>
 
-      <div class="form-group">
-        <label for="relationshipGoal">What are you looking for?</label>
-        <select id="relationshipGoal" required>
-          <option value="" disabled selected>Select your goal</option>
-          <option value="serious">Serious long-term relationship</option>
-          <option value="marriage">Marriage</option>
-          <option value="dating">Open to dating and seeing where it goes</option>
-          <option value="companionship">Companionship</option>
-        </select>
-      </div>
+        <div class="form-group">
+          <label for="occupation">Occupation</label>
+          <input type="text" id="occupation" placeholder="Your profession" required />
+        </div>
 
-      <div class="form-group">
-        <label for="idealPartner">Tell us about your ideal partner</label>
-        <textarea
-          id="idealPartner"
-          placeholder="Describe the qualities, values, and characteristics you're looking for..."
-          required
-        ></textarea>
-      </div>
+        <div class="form-group">
+          <label for="relationshipGoal">What are you looking for?</label>
+          <select id="relationshipGoal" required>
+            <option value="" disabled selected>Select your goal</option>
+            <option value="serious">Serious long-term relationship</option>
+            <option value="marriage">Marriage</option>
+            <option value="dating">Open to dating and seeing where it goes</option>
+            <option value="companionship">Companionship</option>
+          </select>
+        </div>
 
-      <div class="nav-buttons">
-        <button type="button" id="backBtn">Back</button>
-        <button type="submit" class="primary">Submit</button>
-      </div>
-    </form>
+        <div class="form-group">
+          <label for="idealPartner">Tell us about your ideal partner</label>
+          <textarea
+            id="idealPartner"
+            placeholder="Describe the qualities, values, and characteristics you're looking for..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="nav-buttons">
+          <button type="button" class="back-btn" id="backBtn">Back</button>
+          <button type="submit" class="submit-btn">Submit</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <script>
-    // Wait for DOM to be fully loaded
     document.addEventListener('DOMContentLoaded', function() {
       const getStartedBtn = document.getElementById('getStartedBtn');
+      const welcomeSection = document.getElementById('welcomeSection');
       const intakeForm = document.getElementById('intakeForm');
       const backBtn = document.getElementById('backBtn');
+      const userForm = document.getElementById('userForm');
 
-      // Add click event to Get Started button
       getStartedBtn.addEventListener('click', function() {
-        console.log('Get Started button clicked!'); // Debug log
-        getStartedBtn.style.display = 'none';
+        welcomeSection.style.display = 'none';
         intakeForm.style.display = 'block';
       });
 
-      // Add click event to Back button
       backBtn.addEventListener('click', function() {
-        console.log('Back button clicked!'); // Debug log
         intakeForm.style.display = 'none';
-        getStartedBtn.style.display = 'inline-block';
+        welcomeSection.style.display = 'block';
       });
 
-      // Add submit event to form
-      intakeForm.addEventListener('submit', function(e) {
+      userForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        console.log('Form submitted!'); // Debug log
-        alert('Thank you for submitting your preferences!');
-        intakeForm.reset();
+        alert('Thank you for your interest! We\'ll be in touch soon to schedule your consultation.');
+        userForm.reset();
         intakeForm.style.display = 'none';
-        getStartedBtn.style.display = 'inline-block';
+        welcomeSection.style.display = 'block';
       });
     });
   </script>
