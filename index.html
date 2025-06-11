@@ -62,6 +62,7 @@
       border-radius: 4px;
       font-size: 1rem;
       resize: vertical;
+      box-sizing: border-box;
     }
     textarea {
       min-height: 80px;
@@ -124,27 +125,35 @@
   </div>
 
   <script>
-    const getStartedBtn = document.getElementById('getStartedBtn');
-    const intakeForm = document.getElementById('intakeForm');
-    const backBtn = document.getElementById('backBtn');
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      const getStartedBtn = document.getElementById('getStartedBtn');
+      const intakeForm = document.getElementById('intakeForm');
+      const backBtn = document.getElementById('backBtn');
 
-    getStartedBtn.addEventListener('click', () => {
-      getStartedBtn.style.display = 'none';
-      intakeForm.style.display = 'block';
-    });
+      // Add click event to Get Started button
+      getStartedBtn.addEventListener('click', function() {
+        console.log('Get Started button clicked!'); // Debug log
+        getStartedBtn.style.display = 'none';
+        intakeForm.style.display = 'block';
+      });
 
-    backBtn.addEventListener('click', () => {
-      intakeForm.style.display = 'none';
-      getStartedBtn.style.display = 'inline-block';
-    });
+      // Add click event to Back button
+      backBtn.addEventListener('click', function() {
+        console.log('Back button clicked!'); // Debug log
+        intakeForm.style.display = 'none';
+        getStartedBtn.style.display = 'inline-block';
+      });
 
-    intakeForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      // You can add form submission logic here (send data, show a message, etc.)
-      alert('Thank you for submitting your preferences!');
-      intakeForm.reset();
-      intakeForm.style.display = 'none';
-      getStartedBtn.style.display = 'inline-block';
+      // Add submit event to form
+      intakeForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        console.log('Form submitted!'); // Debug log
+        alert('Thank you for submitting your preferences!');
+        intakeForm.reset();
+        intakeForm.style.display = 'none';
+        getStartedBtn.style.display = 'inline-block';
+      });
     });
   </script>
 </body>
