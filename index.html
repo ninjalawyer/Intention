@@ -12,10 +12,10 @@
     }
     
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      color: #333;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      overflow-x: hidden;
     }
     
     .hero-section {
@@ -25,103 +25,272 @@
       justify-content: center;
       padding: 2rem;
       position: relative;
+      background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 35%, #0f0f23 100%);
+    }
+    
+    .floating-particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 8s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+      50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
+    }
+    
+    .container {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 4rem;
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    }
+    
+    .logo {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24, #ff9ff3, #54a0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      letter-spacing: -3px;
+      text-transform: lowercase;
+    }
+    
+    .tagline {
+      font-size: 1.4rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 3rem;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+    
+    .brain-heart-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin: 3rem 0;
+      position: relative;
+    }
+    
+    .icon-wrapper {
+      position: relative;
+      padding: 2rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .icon-wrapper:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    
+    .brain-icon, .heart-icon {
+      width: 60px;
+      height: 60px;
+      position: relative;
+    }
+    
+    .brain-icon::before {
+      content: '🧠';
+      font-size: 60px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      filter: grayscale(1) brightness(2);
+    }
+    
+    .heart-icon::before {
+      content: '❤️';
+      font-size: 60px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      filter: brightness(1.2);
+    }
+    
+    .connection-line {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, #ff6b6b, #54a0ff);
+      position: relative;
+      border-radius: 1px;
+    }
+    
+    .connection-line::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      right: -6px;
+      width: 0;
+      height: 0;
+      border-left: 8px solid #54a0ff;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+    }
+    
+    .description {
+      text-align: left;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+    
+    .description p {
+      margin-bottom: 2rem;
+    }
+    
+    .description strong {
+      color: #fff;
+      font-weight: 600;
+    }
+    
+    .how-it-works {
+      margin: 3rem 0;
+    }
+    
+    .how-it-works h3 {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      color: #fff;
+      font-weight: 600;
+    }
+    
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .step {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
       overflow: hidden;
     }
     
-    .hero-section::before {
+    .step::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      bottom: 0;
-      background: url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
-      opacity: 0.15;
-      z-index: -1;
+      height: 3px;
+      background: linear-gradient(90deg, #ff6b6b, #54a0ff, #ff9ff3);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
     
-    .container {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      padding: 3rem;
-      width: 100%;
-      max-width: 800px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
+    .step:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.2);
     }
     
-    .logo {
-      font-size: 3rem;
+    .step:hover::before {
+      opacity: 1;
+    }
+    
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff6b6b, #54a0ff);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-weight: 700;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1rem;
-      letter-spacing: -2px;
+      margin: 0 auto 1rem;
+      font-size: 1.2rem;
     }
     
-    .tagline {
+    .step h4 {
       font-size: 1.3rem;
-      color: #666;
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-    
-    .hero-image {
-      width: 300px;
-      height: 200px;
-      background: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2088&q=80') center/cover;
-      border-radius: 15px;
-      margin: 0 auto 2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-    
-    .description {
-      text-align: left;
-      line-height: 1.7;
-      color: #555;
-      margin-bottom: 2.5rem;
-      font-size: 1.05rem;
-    }
-    
-    .description p {
-      margin-bottom: 1.5rem;
-    }
-    
-    .description strong {
-      color: #333;
+      margin-bottom: 1rem;
+      color: #fff;
       font-weight: 600;
+    }
+    
+    .step p {
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+      font-size: 0.95rem;
     }
     
     .cta-button {
-      background: linear-gradient(135deg, #667eea, #764ba2);
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
       color: white;
       border: none;
-      padding: 1rem 2.5rem;
+      padding: 1.2rem 3rem;
       border-radius: 50px;
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1.2rem;
+      font-weight: 700;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      transition: all 0.4s ease;
+      box-shadow: 0 15px 35px rgba(255, 107, 107, 0.3);
       text-transform: uppercase;
       letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
     }
     
     .cta-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+      box-shadow: 0 20px 40px rgba(255, 107, 107, 0.4);
+    }
+    
+    .cta-button:hover::before {
+      left: 100%;
     }
     
     .form-container {
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
       padding: 3rem;
       width: 100%;
       max-width: 600px;
@@ -129,45 +298,64 @@
       display: none;
       position: relative;
       z-index: 1;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
     }
     
     .form-container h2 {
       text-align: center;
       margin-bottom: 2rem;
-      color: #333;
-      font-size: 2rem;
-      font-weight: 600;
+      color: #fff;
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff6b6b, #54a0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
     .form-group {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
     
     label {
       display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
       font-weight: 600;
-      color: #333;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.1rem;
     }
     
     input[type="text"],
     select,
     textarea {
       width: 100%;
-      padding: 1rem;
-      border: 2px solid #e1e5e9;
-      border-radius: 10px;
+      padding: 1.2rem;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
       font-size: 1rem;
-      transition: border-color 0.3s ease;
-      background: #f8f9fa;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      backdrop-filter: blur(10px);
     }
     
     input[type="text"]:focus,
     select:focus,
     textarea:focus {
       outline: none;
-      border-color: #667eea;
-      background: white;
+      border-color: #ff6b6b;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 20px rgba(255, 107, 107, 0.2);
+    }
+    
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+    
+    option {
+      background: #1a1a2e;
+      color: #fff;
     }
     
     textarea {
@@ -177,42 +365,43 @@
     
     .nav-buttons {
       text-align: center;
-      margin-top: 2.5rem;
+      margin-top: 3rem;
       display: flex;
-      gap: 1rem;
+      gap: 1.5rem;
       justify-content: center;
     }
     
     .nav-buttons button {
-      padding: 0.8rem 2rem;
+      padding: 1rem 2.5rem;
       border: none;
       border-radius: 25px;
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
     }
     
     .back-btn {
-      background: #f8f9fa;
-      color: #666;
-      border: 2px solid #e1e5e9;
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.8);
+      border: 2px solid rgba(255, 255, 255, 0.2);
     }
     
     .back-btn:hover {
-      background: #e9ecef;
+      background: rgba(255, 255, 255, 0.15);
       transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.3);
     }
     
     .submit-btn {
-      background: linear-gradient(135deg, #28a745, #20c997);
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
       color: white;
-      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+      box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
     }
     
     .submit-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+      box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
     }
     
     @media (max-width: 768px) {
@@ -222,16 +411,19 @@
       }
       
       .logo {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
       }
       
-      .tagline {
-        font-size: 1.1rem;
+      .brain-heart-container {
+        gap: 1rem;
       }
       
-      .hero-image {
-        width: 250px;
-        height: 160px;
+      .connection-line {
+        width: 40px;
+      }
+      
+      .steps-grid {
+        grid-template-columns: 1fr;
       }
       
       .nav-buttons {
@@ -242,18 +434,57 @@
 </head>
 <body>
   <div class="hero-section">
+    <div class="floating-particles" id="particles"></div>
+    
     <div class="container" id="welcomeSection">
-      <div class="logo">Intention</div>
-      <div class="tagline">Intentional Dating. Real Relationships.</div>
+      <div class="logo">intention</div>
+      <div class="tagline">Where Science Meets Love</div>
       
-      <div class="hero-image"></div>
+      <div class="brain-heart-container">
+        <div class="icon-wrapper">
+          <div class="brain-icon"></div>
+        </div>
+        <div class="connection-line"></div>
+        <div class="icon-wrapper">
+          <div class="heart-icon"></div>
+        </div>
+      </div>
       
       <div class="description">
         <p><strong>Dating apps have a 22% success rate because they're built like games, not relationship tools.</strong> Intention fixes this by combining professional matchmakers with AI to create meaningful connections.</p>
         
-        <p><strong>Here's how it works:</strong> Instead of swiping through hundreds of profiles, you start with a personal consultation with a trained matchmaker who really gets to know you. Our AI then curates exactly 5 compatible matches based on deep compatibility, not just photos. You link your calendars, meet in person, and after each date, you reflect through voice prompts that help our AI learn what works for you.</p>
+        <div class="how-it-works">
+          <h3>How It Works</h3>
+          <div class="steps-grid">
+            <div class="step">
+              <div class="step-number">1</div>
+              <h4>Personal Consultation</h4>
+              <p>Start with a one-on-one session with a trained matchmaker who takes time to really understand you, your values, and what you're looking for.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <h4>AI-Curated Matches</h4>
+              <p>Our AI analyzes deep compatibility factors to curate exactly 5 quality matches based on substance, not just photos.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <h4>Real Dates</h4>
+              <p>Link your calendars and meet in person. No endless texting or time wasting—just meaningful face-to-face connections.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">4</div>
+              <h4>Voice Reflections</h4>
+              <p>After each date, share your thoughts through voice prompts that help our AI learn what works for you and refine future matches.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">5</div>
+              <h4>Insights & Support</h4>
+              <p>Receive a personalized insights report plus ongoing matchmaker support to continuously improve your dating approach.</p>
+            </div>
+          </div>
+        </div>
         
-        <p><strong>After 5 dates, you get a personalized insights report, plus ongoing matchmaker support to refine your approach.</strong> No endless swiping, no ghosting, no games - just intentional dating that leads to real relationships.</p>
+        <p><strong>No endless swiping, no ghosting, no games—just intentional dating that leads to real relationships.</strong></p>
       </div>
       
       <button class="cta-button" id="getStartedBtn">Start Your Journey</button>
@@ -302,7 +533,23 @@
   </div>
 
   <script>
+    // Create floating particles
+    function createParticles() {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+        container.appendChild(particle);
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      
       const getStartedBtn = document.getElementById('getStartedBtn');
       const welcomeSection = document.getElementById('welcomeSection');
       const intakeForm = document.getElementById('intakeForm');
