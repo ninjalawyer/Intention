@@ -326,6 +326,7 @@
     }
     
     input[type="text"],
+    input[type="email"],
     select,
     textarea {
       width: 100%;
@@ -340,6 +341,7 @@
     }
     
     input[type="text"]:focus,
+    input[type="email"]:focus,
     select:focus,
     textarea:focus {
       outline: none;
@@ -404,6 +406,135 @@
       box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
     }
     
+    .footer {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 4rem 2rem 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    
+    .footer-link {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .footer-link:hover {
+      color: #ff6b6b;
+      transform: translateY(-2px);
+    }
+    
+    .footer-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #ff6b6b, #54a0ff);
+      transition: width 0.3s ease;
+    }
+    
+    .footer-link:hover::after {
+      width: 100%;
+    }
+    
+    .footer-text {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    
+    .legal-section {
+      background: rgba(0, 0, 0, 0.95);
+      padding: 4rem 2rem;
+      display: none;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .legal-content {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    
+    .legal-section h2 {
+      color: #fff;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, #ff6b6b, #54a0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+    
+    .legal-section h3 {
+      color: #ff6b6b;
+      font-size: 1.5rem;
+      margin: 2.5rem 0 1rem;
+      font-weight: 600;
+    }
+    
+    .legal-section p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+    
+    .legal-section ul {
+      color: rgba(255, 255, 255, 0.8);
+      margin: 1rem 0 1.5rem 1.5rem;
+    }
+    
+    .legal-section li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .close-legal {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 1rem;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .close-legal:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.05);
+    }
+    
     @media (max-width: 768px) {
       .container, .form-container {
         margin: 1rem;
@@ -428,6 +559,19 @@
       
       .nav-buttons {
         flex-direction: column;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .legal-section {
+        padding: 2rem 1rem;
+      }
+      
+      .legal-content {
+        padding: 0 1rem;
       }
     }
   </style>
@@ -495,6 +639,11 @@
       
       <form id="userForm" action="https://formspree.io/f/xblygnnv" method="POST">
         <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required />
+        </div>
+
+        <div class="form-group">
           <label for="location">Location</label>
           <input type="text" id="location" name="location" placeholder="City, State" required />
         </div>
@@ -536,6 +685,123 @@
     </div>
   </div>
 
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#" class="footer-link" id="termsLink">Terms of Service</a>
+        <a href="#" class="footer-link" id="privacyLink">Privacy Policy</a>
+        <a href="mailto:hello@intention.dating" class="footer-link">Contact Us</a>
+      </div>
+      <div class="footer-text">
+        © 2025 Intention. All rights reserved.<br>
+        Bringing intentional dating to modern relationships.
+      </div>
+    </div>
+  </footer>
+
+  <div class="legal-section" id="termsSection">
+    <button class="close-legal" id="closeTerms">×</button>
+    <div class="legal-content">
+      <h2>Terms of Service</h2>
+      
+      <h3>1. Acceptance of Terms</h3>
+      <p>By accessing and using Intention's dating service, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
+      
+      <h3>2. Service Description</h3>
+      <p>Intention provides a premium matchmaking service that combines professional matchmakers with AI technology to facilitate meaningful connections. Our service includes personal consultations, AI-curated matches, and ongoing support.</p>
+      
+      <h3>3. User Responsibilities</h3>
+      <p>Users agree to:</p>
+      <ul>
+        <li>Provide accurate and truthful information during registration and consultations</li>
+        <li>Treat all matches and staff with respect and courtesy</li>
+        <li>Attend scheduled meetings and dates in good faith</li>
+        <li>Maintain confidentiality regarding other users' personal information</li>
+        <li>Not use the service for any illegal or unauthorized purpose</li>
+      </ul>
+      
+      <h3>4. Privacy and Data Protection</h3>
+      <p>We take your privacy seriously. All personal information is handled in accordance with our Privacy Policy. We use your data solely to provide our matchmaking services and will never sell your information to third parties.</p>
+      
+      <h3>5. Service Limitations</h3>
+      <p>While we strive to provide excellent matches, we cannot guarantee specific outcomes or relationships. Success in dating depends on many factors beyond our control, including personal compatibility and individual circumstances.</p>
+      
+      <h3>6. Termination</h3>
+      <p>Either party may terminate this agreement at any time. Upon termination, your access to the service will cease, though certain provisions of this agreement may survive termination.</p>
+      
+      <h3>7. Limitation of Liability</h3>
+      <p>Intention shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the service.</p>
+      
+      <h3>8. Changes to Terms</h3>
+      <p>We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting. Continued use of the service constitutes acceptance of modified terms.</p>
+      
+      <h3>9. Contact Information</h3>
+      <p>For questions about these Terms of Service, please contact us at hello@intention.dating.</p>
+    </div>
+  </div>
+
+  <div class="legal-section" id="privacySection">
+    <button class="close-legal" id="closePrivacy">×</button>
+    <div class="legal-content">
+      <h2>Privacy Policy</h2>
+      
+      <h3>1. Information We Collect</h3>
+      <p>We collect information you provide directly to us, including:</p>
+      <ul>
+        <li>Personal details (name, age, location, occupation)</li>
+        <li>Contact information (email address, phone number)</li>
+        <li>Relationship preferences and goals</li>
+        <li>Voice recordings from reflection sessions</li>
+        <li>Feedback and communications with our team</li>
+      </ul>
+      
+      <h3>2. How We Use Your Information</h3>
+      <p>We use your information to:</p>
+      <ul>
+        <li>Provide personalized matchmaking services</li>
+        <li>Facilitate introductions with compatible matches</li>
+        <li>Improve our AI matching algorithms</li>
+        <li>Communicate with you about your matches and service updates</li>
+        <li>Provide customer support and respond to inquiries</li>
+      </ul>
+      
+      <h3>3. Information Sharing</h3>
+      <p>We do not sell, trade, or rent your personal information to third parties. We may share limited information:</p>
+      <ul>
+        <li>With potential matches as part of our introduction process</li>
+        <li>With service providers who assist in delivering our services</li>
+        <li>When required by law or to protect our rights and safety</li>
+      </ul>
+      
+      <h3>4. Data Security</h3>
+      <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure.</p>
+      
+      <h3>5. Data Retention</h3>
+      <p>We retain your personal information for as long as necessary to provide our services and fulfill the purposes outlined in this policy, unless a longer retention period is required by law.</p>
+      
+      <h3>6. Your Rights</h3>
+      <p>You have the right to:</p>
+      <ul>
+        <li>Access and update your personal information</li>
+        <li>Request deletion of your data</li>
+        <li>Opt out of certain communications</li>
+        <li>Request a copy of the information we hold about you</li>
+      </ul>
+      
+      <h3>7. Cookies and Tracking</h3>
+      <p>We may use cookies and similar technologies to enhance your experience and analyze usage patterns. You can control cookie settings through your browser preferences.</p>
+      
+      <h3>8. Third-Party Services</h3>
+      <p>Our service may contain links to third-party websites or services. We are not responsible for the privacy practices of these external sites.</p>
+      
+      <h3>9. Changes to Privacy Policy</h3>
+      <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on our website.</p>
+      
+      <h3>10. Contact Us</h3>
+      <p>If you have questions about this Privacy Policy or our data practices, please contact us at privacy@intention.dating.</p>
+    </div>
+  </div>
+
   <script>
     // Create floating particles
     function createParticles() {
@@ -559,6 +825,14 @@
       const intakeForm = document.getElementById('intakeForm');
       const backBtn = document.getElementById('backBtn');
       const userForm = document.getElementById('userForm');
+      
+      // Legal section elements
+      const termsLink = document.getElementById('termsLink');
+      const privacyLink = document.getElementById('privacyLink');
+      const termsSection = document.getElementById('termsSection');
+      const privacySection = document.getElementById('privacySection');
+      const closeTerms = document.getElementById('closeTerms');
+      const closePrivacy = document.getElementById('closePrivacy');
 
       getStartedBtn.addEventListener('click', function() {
         welcomeSection.style.display = 'none';
@@ -568,6 +842,44 @@
       backBtn.addEventListener('click', function() {
         intakeForm.style.display = 'none';
         welcomeSection.style.display = 'block';
+      });
+
+      // Legal section handlers
+      termsLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        termsSection.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      });
+
+      privacyLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        privacySection.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      });
+
+      closeTerms.addEventListener('click', function() {
+        termsSection.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      });
+
+      closePrivacy.addEventListener('click', function() {
+        privacySection.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      });
+
+      // Close legal sections when clicking outside
+      termsSection.addEventListener('click', function(e) {
+        if (e.target === termsSection) {
+          termsSection.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+
+      privacySection.addEventListener('click', function(e) {
+        if (e.target === privacySection) {
+          privacySection.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
       });
 
       userForm.addEventListener('submit', function(e) {
@@ -585,3 +897,4 @@
   </script>
 </body>
 </html>
+      
